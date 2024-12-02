@@ -71,7 +71,7 @@ app.post('/api/orders', async (req, res) => {
   }
 });
 
-app.put('/api/products/:id..', async (req, res) => {
+app.put('/api/products/:_id..', async (req, res) => {
   try {
     const productId = parseInt(req.params.id); // Parse id from the URL as an integer
     const updatedProduct = req.body; // Get the updated product data from the request body
