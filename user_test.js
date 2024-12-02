@@ -84,7 +84,12 @@ app.put('/api/products/:id..', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid update data' });
     }
 
-    
+    // Update the product in the database
+    var result = await productsCollection.updateOne(
+      { id: productId }, // Match the product by id
+      { $set: updatedProduct } // Update the fields with provided data
+    );
+
     if (result.matchedCount === 0) {
       console.error('Product not found:', productId);
       return res.status(404).json({ success: false, message: 'Product not found' });
