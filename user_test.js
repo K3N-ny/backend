@@ -85,6 +85,11 @@ app.put('/api/products/:id..', async (req, res) => {
     }
 
     
+    if (result.matchedCount === 0) {
+      console.error('Product not found:', productId);
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+
     res.json({ success: true, message: 'Product updated successfully' });
   } catch (error) {
     console.error('Error updating product:', error);
