@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "user_test.js",
   "scripts": {
-    "start": "nodemon user_test.js",
+    "start": "node user_test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

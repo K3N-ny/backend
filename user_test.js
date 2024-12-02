@@ -33,7 +33,7 @@ let ordersCollection;
 
 
 // Middleware setup
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors());
 app.use(express.json());
 app.use(morgan("short"));
 
