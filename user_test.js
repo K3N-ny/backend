@@ -81,7 +81,7 @@ app.put('/api/products/:id..', async (req, res) => {
     // Validate the update payload
     if (!updatedProduct) {
       console.error('Invalid product update data:', updatedProduct);
-      return res.status(400).json({ success: false, message: 'Invalid update data' });
+      return res.status(400).json({ success: false, message: 'Invalid product update data' });
     }
 
     // Update the product in the database
