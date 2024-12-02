@@ -71,6 +71,28 @@ app.post('/api/orders', async (req, res) => {
   }
 });
 
+app.put('/api/products/:id..', async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id); // Parse id from the URL as an integer
+    const updatedProduct = req.body; // Get the updated product data from the request body
+
+    console.log('Updating product:', productId, updatedProduct); // Log the update request for debugging
+
+    // Validate the update payload
+    if (!updatedProduct) {
+      console.error('Invalid product update data:', updatedProduct);
+      return res.status(400).json({ success: false, message: 'Invalid update data' });
+    }
+
+    
+    res.json({ success: true, message: 'Product updated successfully' });
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({ success: false, message: 'Failed to update product' });
+  }
+});
+
+
 
 
 // Start the server
