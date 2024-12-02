@@ -31,6 +31,29 @@ let ordersCollection;
   }
 })();
 
+
+// Middleware setup
+app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(express.json());
+app.use(morgan("short"));
+
+var staticMiddleware = express.static(path.join(__dirname, '../AfterSchoolApp/dist'));
+
+// Use a middleware to log errors if static files cannot be served
+app.use((req, res, next) => {
+  staticMiddleware(req, res, (err) => {
+    if (err) {
+      console.error('Error serving static file: ${err.message}');
+      res.status(500).send('Internal Server Error while serving static files.');
+    } else {
+      next();
+    }
+  });
+});
+
+
+
+
 // Start the server
 const PORT = 5000;
 app.listen(5000, () => {
