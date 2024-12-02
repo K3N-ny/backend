@@ -11,6 +11,25 @@ var app = express();
 
 
 
+// MongoDB Atlas connection
+var MONGO_URI = 'mongodb+srv://kenny:Kenny123@webstorecluster.xccw4.mongodb.net/'; //  MongoDB Atlas URI
+var client = new MongoClient(MONGO_URI);
+
+let productsCollection;
+let ordersCollection;
+
+// Connect to MongoDB Atlas
+(async () => {
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB Atlas');
+    var database = client.db('Webstore'); //  Database name
+    productsCollection = database.collection('products'); //  collection name
+    ordersCollection = database.collection('orders'); //  collection name
+  } catch (err) {
+    console.error('Error connecting to MongoDB Atlas:', err);
+  }
+})();
 
 // Start the server
 const PORT = 5000;
